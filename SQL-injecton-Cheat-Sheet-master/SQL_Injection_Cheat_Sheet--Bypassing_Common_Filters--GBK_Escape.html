@@ -1,0 +1,8 @@
+<!doctype html><html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>GBK Escape</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="res/styles2.css" type="text/css" />
+</head>
+<body><h1><b><u>GBK Escape</u></b></h1>This example was first published in 2006 on Chris Shiflett's Blog as a way to bypass addslashes. <br />It relies on the way MySQL will perform escaping. <br />It will depend on the charset used by the connection. <br />If the database driver is not aware of the charset used it will not perform the right escaping and create an exploitable situation. <br />This exploit relies on the usage of GBK. <br />GBK is a character set for simplified Chinese. <br />Using the fact that the database driver and the database don't "talk" the same charset, it's possible to generate a single quote and break out of the SQL syntax to inject a payload.<br />Using the string \xBF' (URL-encoded as %bf%27), it's possible to get a single quote that will not get escaped properly. <br />It's therefore possible to inject an always-true condition using %bf%27 or 1=1 -- and bypass the authentication.<br />As a side note, this issue can be remediated by setting up the connection encoding to 'GBK' instead of using an SQL query (which is the source of this issue). <br />Here the problem comes from the execution of the following query:<br />    <strong>SET CHARACTER SET 'GBK';</strong><br />It is a pretty unlikely issue for a web application but it's always good to know that it exists, especially if you play CTFs.</body></html>

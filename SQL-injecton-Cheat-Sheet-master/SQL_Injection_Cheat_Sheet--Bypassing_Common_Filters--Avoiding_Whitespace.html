@@ -1,0 +1,8 @@
+<!doctype html><html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Avoiding Whitespace</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="res/styles2.css" type="text/css" />
+</head>
+<body><h1><b><u>Avoiding Whitespace</u></b></h1>If the application blocks or strips from your input, you can use comments to simulate whitespace within your injected data.<br /><img src="images\15-1.png" alt="images\15-1.png" /><br />You can insert inline comments into SQL statements in the same way as for C++, by embedding them between the symbols /* and */.<br /><img src="images\15-2.png" alt="images\15-2.png" /><br />Here we can see that our input:<br />0/**/or/**/1<br />Is equal to:<br />0 or 1<br /><img src="images\15-3.png" alt="images\15-3.png" /><br />Additionally, in MySQL, comments can even be inserted within keywords themselves, which provides another means of bypassing some input validation filters while preserving the syntax of the actual query:<br />SEL/**/ECT</body></html>

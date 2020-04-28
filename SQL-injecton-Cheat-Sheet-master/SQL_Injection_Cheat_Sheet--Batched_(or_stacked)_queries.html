@@ -1,0 +1,8 @@
+<!doctype html><html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Batched (or stacked) queries</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="res/styles2.css" type="text/css" />
+</head>
+<body><h1><b><u>Batched (or stacked) queries</u></b></h1>You can use batched queries to execute multiple queries in succession. <br />Note that while the subsequent queries are executed, the results are not returned to the application. <br />Hence this technique is primarily of use in relation to blind vulnerabilities where you can use a second query to trigger a DNS lookup, conditional error, or time delay.<br /><table class="table"><col/><col/><tr><th>Database</th><th>Syntax</th></tr><tr><td>Oracle</td><td>Does not support batched queries.</td></tr><tr><td>Microsoft</td><td>QUERY-1-HERE; QUERY-2-HERE</td></tr><tr><td>PostgreSQL</td><td>QUERY-1-HERE; QUERY-2-HERE</td></tr><tr><td>MySQL</td><td>Does not support batched queries.</td></tr></table><br /></body></html>

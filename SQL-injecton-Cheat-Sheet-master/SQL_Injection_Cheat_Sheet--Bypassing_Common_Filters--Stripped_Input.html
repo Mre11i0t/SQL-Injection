@@ -1,0 +1,8 @@
+<!doctype html><html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Stripped Input</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="res/styles2.css" type="text/css" />
+</head>
+<body><h1><b><u>Stripped Input</u></b></h1>Some input validation routines employ a simple blacklist and either block or remove any supplied data that appears on this list. <br />In this instance, you should try looking for common defects in validation and canonicalization mechanisms.<br /><img src="images\16-1.png" alt="images\16-1.png" /><br />For example, if the SELECT keyword is being blocked or removed, you can try the following bypasses:<br />SeLeCt<br />%00SELECT<br />SELSELECTECT<br />%53%45%4c%45%43%54<br />%2553%2545%254c%2545%2543%2254<br /><img src="images\16-2.png" alt="images\16-2.png" /></body></html>

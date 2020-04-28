@@ -1,0 +1,8 @@
+<!doctype html><html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Conditional time delays</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="res/styles2.css" type="text/css" />
+</head>
+<body><h1><b><u>Conditional time delays</u></b></h1>You can test a single boolean condition and trigger a time delay if the condition is true.<br /><table class="table"><col/><col/><tr><th>Database</th><th>Syntax</th></tr><tr><td>Oracle</td><td>SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN 'a'||dbms_pipe.receive_message(('a'),10) ELSE NULL END FROM dual</td></tr><tr><td>Microsoft</td><td>IF (YOUR-CONDITION-HERE) WAITFOR DELAY '0:0:10'</td></tr><tr><td>PostgreSQL</td><td>SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN pg_sleep(10) ELSE pg_sleep(0) END</td></tr><tr><td>MySQL</td><td>SELECT IF(YOUR-CONDITION-HERE,sleep(10),'a')</td></tr></table></body></html>
